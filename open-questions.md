@@ -1,7 +1,7 @@
 # Craft Harness — Open Questions
 
 Status as of 2026-08-28.
-Resolved decisions live in `craft-harness plan.md` §10; this file tracks what is still open, for the next refinement pass.
+Resolved decisions live in `craft-harness plan.md` §11; this file tracks what is still open, for the next refinement pass.
 
 ## 1. Assessment design (major workstream)
 

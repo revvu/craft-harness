@@ -251,7 +251,7 @@ Evidence integrity requirements:
 - Assessments are **constructive wherever the domain allows**: build an artifact that performs against a pre-registered baseline (e.g., certify classical AI search by building an Othello player that beats a provided opponent), rather than answering questions.
   The baseline + acceptance criteria are the rubric; one artifact may certify a cluster of units.
   Declarative domains use the constructive analog (novel-case application defended against pre-registered objections).
-  Detailed design is the assessment workstream (§10 open item 1).
+  Detailed design is the assessment workstream (§11 open item 1).
 - Assessment tasks are **novel instances**, anchored in the standard of the approved sources.
 - Assessment sessions are **assistant-free and logged**; the log is the evidence artifact.
 - Rubrics are **pre-registered** — written before the attempt.
@@ -271,7 +271,17 @@ A unit is right-sized when it is masterable in days-to-weeks, assessable with 1�
 
 Granularity remains demand-driven: false blocks → unlock or split; false authorizations → split and narrow.
 
-## 10. Decision Log
+## 10. Multi-Domain Regimes
+
+- In procedural domains (software), the gate governs **procedures**: what the agent may do.
+- In declarative domains (biology, philosophy, psychology, chemistry), the gate governs **premises**: which facts, concepts, and frameworks the agent may invoke while reasoning and writing on the operator's behalf.
+- Schema, mastery ladder, and lifecycle are uniform across domains; per-domain **assessment playbooks** are the plug-in point
+  (chemistry: novel problem sets; philosophy: novel-case application at L3, steelman-and-respond at L4).
+- One namespace: domains interconnect (chemistry → biology prerequisites); domain tags are metadata, never silos.
+- The registry has standalone value per domain as a verified map of understanding, independent of any worker agent.
+- Sequencing: validate the gate on software first (execution makes gaps undeniable), then add one declarative domain to prove schema generality before spreading wide (§11 open item 4).
+
+## 11. Decision Log
 
 Resolved:
 
@@ -280,7 +290,7 @@ Resolved:
 3. **Representation**: lazy materialization — interior/frontier/cloud, three materialization events, path-finding for distant targets. (round 2)
 4. **Foundation floor**: built lazily as `GRANTED` marks during path-finding; small explicit file. (round 2, subsumes round-1 decision 3)
 5. **Source approval gate**: yes — operator approves the teacher's proposed materials before learning begins; folded into path review (core concepts §5.1 step 6). (round 3)
-6. **CLAIMED semantics / verify-on-first-use**: confirmed provisionally — claims anchor path-finding, grant nothing at the gate, express assessment on first gate demand. Revisit if the express-assessment friction proves wrong in practice (spike 3 in §11). (round 3)
+6. **CLAIMED semantics / verify-on-first-use**: confirmed provisionally — claims anchor path-finding, grant nothing at the gate, express assessment on first gate demand. Revisit if the express-assessment friction proves wrong in practice (spike 3 in §12). (round 3)
 7. **Frontier fan-out**: automatic on unlock; organic score threshold (source support × goal relevance × edge-type diversity), typically ~4, never a hardcoded top-k. (round 3)
 8. **Assessment direction**: constructive assessment preferred — "build a thing that performs against a pre-registered baseline" over question-answering, wherever the domain allows (core concepts §7). Direction fixed; full assessment design is its own major workstream below. (round 3)
 
@@ -295,7 +305,7 @@ Open:
 4. **MVP scope** (deferred).
    Recommendation on file: gate on software; learning pilot on one non-software domain.
 
-## 11. Assumptions to Spike
+## 12. Assumptions to Spike
 
 1. **Curriculum-grounded frontier expansion is feasible and high-quality.**
    ✅ SPIKED (2026-08-28), assumption holds.
@@ -306,7 +316,7 @@ Open:
 2. Requirement extraction can be made honest enough with an auditor pass (spike later: red-team a worker plan for smuggled premises).
 3. Express assessment ("verify on first use") is fast enough not to make the worker unusable in week one (spike later: time a full claim→verify→execute cycle).
 
-## 12. Out of Scope for This Plan
+## 13. Out of Scope for This Plan
 
 - Concrete storage formats, tooling, and agent harness wiring (implementation doc).
 - Embeddings, knowledge graphs, or ontologies beyond the lazily-materialized graph.
