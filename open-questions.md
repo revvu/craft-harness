@@ -1,7 +1,8 @@
 # Craft Harness — Open Questions
 
-Status as of 2026-08-28.
+Status as of 2026-08-30.
 Resolved decisions live in `craft-harness plan.md` §11; this file tracks what is still open, for the next refinement pass.
+Both pending spikes have been run; their evidence is folded into the items below (artifacts: `spikes/red-team-requirement-extraction.md`, `spikes/express-assessment-cycle.md`).
 
 ## 1. Assessment design (major workstream)
 
@@ -10,17 +11,22 @@ Still to design:
 
 - **Baseline construction and calibration**: where do baseline opponents / acceptance criteria come from, and how do we know a baseline corresponds to a mastery level (an Othello player that "beats most humans" vs. one that beats a provided reference player)?
 - **Artifact ↔ unit-cluster mapping**: which units does one constructive artifact certify, and at what levels? One Othello player plausibly evidences game-tree search, heuristics, and eval-function design — who decides the fan-in, and how is it audited?
-- **Express-assessment format** for verify-on-first-use: what does a ~10-minute assessment look like per domain, and is it fast enough not to make the worker unusable in week one? (Spike pending: time a full claim → verify → execute cycle.)
+- **Express-assessment format** for verify-on-first-use: SPIKED — grading machinery discriminates (4/4 blind verdicts correct; deterministic sandbox grading needed zero discretion) and machinery overhead is ~5 min/cycle.
+  Remaining: hold the human time budget — as-generated assessments ran 20–24 min against a ≤10-min budget, so the format needs a hard per-assessment (not per-item) time budget with item count derived from it; and rubrics need a red-team against a synthetic flawed attempt before pre-registration (the untested written rubric carried two substantive ambiguities; the self-tested git harness carried none).
+  UNVERIFIED and mandatory before declaring viability: the operator sits one real timed express assessment.
 - **Declarative-domain analogs**: the constructive form for philosophy/psych ("apply framework X to a novel case, defend against pre-registered objections") needs the same rigor of pre-registration and grading as the performance-graded form.
 - **Grading mechanics**: how much LLM judgment survives in grading once baselines are performance-graded; what the rubric artifact looks like for non-performance domains.
 - **L3 evidence standard** (deferred from round 1; reshaped by the above): recommendation on file is one proctored cold solve + one adversarial explain-back — re-evaluate once constructive assessment is designed.
 
-## 2. Requirement-extraction paranoia (deferred round 3)
+## 2. Requirement-extraction paranoia (deferred round 3 — now with decisive evidence)
 
 The plan-step → `requires:` mapping is LLM-performed and is the weakest link in the worker gate — under-declaration smuggles unmastered premises past the deterministic check.
 
 - Full adversarial auditor pass from day one, or trust + spot-checks for the MVP?
-- Spike pending: red-team a worker plan for smuggled undeclared premises to measure how bad under-declaration actually is.
+- SPIKED: the worker honestly parked famous, nameable gaps but smuggled 3 substantive unnamed premises (commit semantics, a uniqueness race, safety-by-framework-default); the deterministic checker passed everything; the auditor caught all of it at ~2.5 min/task.
+  The failure mode is the worker's unknown-unknowns, not deception — so spot-checking is sampling for something the worker itself can't see.
+  **Recommendation: auditor from day one**, prompted specifically at unnamed/ambient premises; decision remains the operator's.
+- Follow-on design inputs from the spike: unit scopes should state exclusions, not just inclusions (they are the audit substrate); under-declaration of already-unlocked units is benign bookkeeping; a registry gap can hide a reachable-but-unknown safe design, so gating does not substitute for design review.
 
 ## 3. MVP scope (deferred round 3)
 
@@ -44,5 +50,6 @@ The plan-step → `requires:` mapping is LLM-performed and is the weakest link i
 
 ## 6. Process
 
-- Next pass per the refinement loop: run pending spikes (§2 red-team, §1 express-assessment timing), then open the assessment-design workstream.
+- Both pending spikes are done (2026-08-30).
+- Next pass per the refinement loop: operator rules on §2 (auditor vs. spot-checks — evidence now strongly favors auditor) and §3 (MVP scope), operator sits one timed express assessment (§1's UNVERIFIED item), then open the assessment-design workstream.
 - After design converges: write `craft-harness implementation.md` bridging current state (nothing built) to the plan.

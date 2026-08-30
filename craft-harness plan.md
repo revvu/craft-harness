@@ -313,8 +313,20 @@ Open:
    Design consequences folded into §3.2a–b: typed edges, curriculum-relative provenance with revision dates, title-based citations with verification tiers, scope-matching against source ToCs, knowledge-prerequisites vs. scheduling-artifacts.
    Spike artifacts: `spikes/frontier-postgres-transactions.md`, `spikes/frontier-algebra-1.md`.
    Residual weak point: client-rendered course catalogs (Khan Academy, OpenStax detail pages) resist ToC verification via plain fetch — the materializer needs a headless browser or structured APIs (implementation concern).
-2. Requirement extraction can be made honest enough with an auditor pass (spike later: red-team a worker plan for smuggled premises).
-3. Express assessment ("verify on first use") is fast enough not to make the worker unusable in week one (spike later: time a full claim→verify→execute cycle).
+2. Requirement extraction can be made honest enough with an auditor pass.
+   ✅ SPIKED (2026-08-30) — the auditor is load-bearing, not optional.
+   A worker planning against a 10-unit mock registry honestly parked the famous gaps (password hashing, sessions — even refusing a mechanically-buildable pseudo-session workaround) but smuggled 3 substantive unnamed premises (sqlite commit semantics, a check-then-insert uniqueness race, XSS-safety-by-autoescape); the deterministic id-subset checker passed every step of both plans.
+   Headline: **the worker parks what it knows it lacks, and smuggles what it doesn't know it's using.**
+   The adversarial audit caught all of it at ~2.5 min per task.
+   Evidence attached to the still-open paranoia decision (§11 open item 2); recommendation: auditor from day one.
+   Spike artifact: `spikes/red-team-requirement-extraction.md`.
+3. Express assessment ("verify on first use") is fast enough not to make the worker unusable in week one.
+   ✅ SPIKED (2026-08-30) — machinery holds; human time budget is the open risk.
+   Generated express assessments for `git.branching` (deterministic sandbox + scripted grader) and `math.algebra-1` (rubric); blind grading matched ground truth 4/4 on competent/flawed attempts.
+   Machinery overhead ≈ 5 min per cycle.
+   But as-generated operator time was 20–24 min — 2–2.5× the ≤10-min express budget (the generator applied the budget per item, not per assessment).
+   UNVERIFIED: actual human solve time — mandatory live step: the operator sits one timed express assessment before verify-on-first-use is declared viable.
+   Spike artifact: `spikes/express-assessment-cycle.md`.
 
 ## 13. Out of Scope for This Plan
 
