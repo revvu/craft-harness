@@ -1,55 +1,41 @@
 # Craft Harness — Open Questions
 
-Status as of 2026-08-30.
-Resolved decisions live in `craft-harness plan.md` §11; this file tracks what is still open, for the next refinement pass.
-Both pending spikes have been run; their evidence is folded into the items below (artifacts: `spikes/red-team-requirement-extraction.md`, `spikes/express-assessment-cycle.md`).
+Status as of 2026-08-30, after the neurosymbolic reframe (`craft-harness reframe.md`).
+The v1 agent-harness questions are dissolved, transformed, or closed below; the live questions are round 4.
 
-## 1. Assessment design (major workstream)
+## Round 4 (live — from the reframe, §10 there)
 
-Direction is fixed: constructive assessment — build an artifact that performs against a pre-registered baseline — preferred over question-answering wherever the domain allows (core concepts §7).
-Still to design:
+1. **The medium.**
+   Where does compose mode live: editor integration, CLI/REPL, notebook, chat harness?
+   Dominates the MVP's feel; "lightweight to play out ideas" suggests editor or notebook.
+2. **Symbolic lint.**
+   A deterministic, zero-LLM flag on anything generated outside realization stacks (e.g., an import not in the registry gets a quiet squiggle).
+   Cheap and non-blocking — the frictionless residue of gating, unlike the rejected LLM auditor.
+   Wanted?
+3. **Provenance mining scope.**
+   Which corpus does bootstrap mine (repos, notes, past projects), and what does approval look like — per node, per batch?
+4. **The librarian's reveal dial.**
+   Where is the spoiler line: source locations only, ecosystem vocabulary, section-level pointers?
+   Per-query, per-domain, or global?
+5. **Ladder survivals.**
+   Confirm assistance tiers (reframe §4) and freshness-based tier decay as the replacement for half-life re-probes.
 
-- **Baseline construction and calibration**: where do baseline opponents / acceptance criteria come from, and how do we know a baseline corresponds to a mastery level (an Othello player that "beats most humans" vs. one that beats a provided reference player)?
-- **Artifact ↔ unit-cluster mapping**: which units does one constructive artifact certify, and at what levels? One Othello player plausibly evidences game-tree search, heuristics, and eval-function design — who decides the fan-in, and how is it audited?
-- **Express-assessment format** for verify-on-first-use: SPIKED — grading machinery discriminates (4/4 blind verdicts correct; deterministic sandbox grading needed zero discretion) and machinery overhead is ~5 min/cycle.
-  Remaining: hold the human time budget — as-generated assessments ran 20–24 min against a ≤10-min budget, so the format needs a hard per-assessment (not per-item) time budget with item count derived from it; and rubrics need a red-team against a synthetic flawed attempt before pre-registration (the untested written rubric carried two substantive ambiguities; the self-tested git harness carried none).
-  UNVERIFIED and mandatory before declaring viability: the operator sits one real timed express assessment.
-- **Declarative-domain analogs**: the constructive form for philosophy/psych ("apply framework X to a novel case, defend against pre-registered objections") needs the same rigor of pre-registration and grading as the performance-graded form.
-- **Grading mechanics**: how much LLM judgment survives in grading once baselines are performance-graded; what the rubric artifact looks like for non-performance domains.
-- **L3 evidence standard** (deferred from round 1; reshaped by the above): recommendation on file is one proctored cold solve + one adversarial explain-back — re-evaluate once constructive assessment is designed.
+## Carried forward (transformed by the pivot)
 
-## 2. Requirement-extraction paranoia (deferred round 3 — now with decisive evidence)
+- **Assessment design workstream** → shrunk: provenance from real work is the evidence spine; the spike-validated sandbox/rubric machinery survives only as an optional instrument.
+  Open remnant: what the optional instrument is for and when it's worth invoking.
+- **Pathfinding residuals** (unchanged, now serving the librarian): coverage-matching softness, cost-weight calibration, SPA-catalog verification needing headless browsing.
+- **Frontier pruning and re-ranking** (still deferred).
+- **Judgment/taste representation**: arguably *more* important now — taste directly shapes expansion style (the operator's idioms) — still no design pass.
 
-The plan-step → `requires:` mapping is LLM-performed and is the weakest link in the worker gate — under-declaration smuggles unmastered premises past the deterministic check.
+## Closed by the pivot
 
-- Full adversarial auditor pass from day one, or trust + spot-checks for the MVP?
-- SPIKED: the worker honestly parked famous, nameable gaps but smuggled 3 substantive unnamed premises (commit semantics, a uniqueness race, safety-by-framework-default); the deterministic checker passed everything; the auditor caught all of it at ~2.5 min/task.
-  The failure mode is the worker's unknown-unknowns, not deception — so spot-checking is sampling for something the worker itself can't see.
-  **Recommendation: auditor from day one**, prompted specifically at unnamed/ambient premises; decision remains the operator's.
-- Follow-on design inputs from the spike: unit scopes should state exclusions, not just inclusions (they are the audit substrate); under-declaration of already-unlocked units is benign bookkeeping; a registry gap can hide a reachable-but-unknown safe design, so gating does not substitute for design review.
+- **Requirement-extraction paranoia / auditor**: dissolved — the operator rejected the auditor, and the reframe removes the architecture that needed it.
+  The red-team spike stands as evidence that subtractive gating leaks; it motivates the compositional architecture.
+- **MVP scope (gate on software vs. declarative pilot)**: mooted in its old form — the medium question (round 4, item 1) replaces it.
+- **L3 evidence standard / express-assessment format**: mooted as spine; folded into the optional-instrument remnant above.
+- **CLAIMED / verify-on-first-use**: subsumed by provenance mining with operator approval.
 
-## 3. MVP scope (deferred round 3)
+## Process
 
-- Recommendation on file: run the worker gate on software (where execution makes gaps undeniable) and pilot the learning loop on one non-software domain the operator is actively curious about.
-- Which non-software domain to pilot?
-
-## 4. Path-finding residuals
-
-- **Coverage matching** is the soft spot: semantic scope-matching ("is this discovered prereq covered by my interior?") has no citation to verify against.
-  Current containment: recorded verdicts, operator veto at path review, self-correction via gate errors → split/merge.
-  Is that enough, or does it need corroboration (e.g., two independent match verdicts)?
-- **Cost-function weights** (`kind_penalty` ~3× for sequence-position edges, confidence/staleness penalties, effort estimates) are placeholders; they need calibration against real paths.
-- **SPA-rendered course catalogs** (Khan Academy, OpenStax detail pages) resist ToC verification via plain fetch; the materializer needs a headless browser or structured APIs (implementation concern, noted from spike 2).
-
-## 5. Deferred design areas (acknowledged, not started)
-
-- Frontier pruning: retiring stale materialized options never pursued (plan §3.5).
-- Frontier re-ranking by relevance to active goals.
-- Judgment/taste units: modeled in the original concept doc, but assessment and gating for taste (vs. knowledge and skills) have had no design pass yet.
-- Half-life values per unit type: what decay constants are reasonable, and does personal use tracking need its own mechanism?
-
-## 6. Process
-
-- Both pending spikes are done (2026-08-30).
-- Next pass per the refinement loop: operator rules on §2 (auditor vs. spot-checks — evidence now strongly favors auditor) and §3 (MVP scope), operator sits one timed express assessment (§1's UNVERIFIED item), then open the assessment-design workstream.
-- After design converges: write `craft-harness implementation.md` bridging current state (nothing built) to the plan.
+- Next pass: operator answers round 4, then the reframe graduates into a clean v2 plan (state machines for binding resolution, provenance ingestion, and the librarian), then `craft-harness implementation.md`.

@@ -1,5 +1,8 @@
 # Craft Harness — Plan
 
+> **SUPERSEDED (2026-08-30):** the agent-harness architecture in this document (worker/checker/auditor, gated execution) has been replaced by the neurosymbolic framing in `craft-harness reframe.md`.
+> This file is retained as design history; §8 of the reframe lists which concepts survive and in what form.
+
 Status: DRAFT (refinement loop, pass 2).
 Open decisions are marked in §10 and must be resolved before this plan is final.
 

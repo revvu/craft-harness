@@ -1,5 +1,8 @@
 # Craft Harness — Core Concepts
 
+> **PARTIALLY SUPERSEDED (2026-08-30):** the agent-harness elements here (worker gate, deterministic checker, gated task execution) are replaced by the neurosymbolic framing in `craft-harness reframe.md`.
+> The three pressures (§3), claim/decision split (§4), path-finding (§5), and half-life honesty (§9) survive the pivot; see reframe §8 for the full survival map.
+
 This document distills the load-bearing ideas of the system.
 `craft-harness plan.md` is the operational specification; this file is the conceptual foundation that should survive plan revisions.
 
