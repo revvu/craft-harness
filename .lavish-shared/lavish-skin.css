@@ -1,0 +1,63 @@
+/* Lavish skin — DaisyUI 5 custom theme.
+   theme-name: craft-harness
+   token source of truth: this file (the project is docs-only, so the skin IS the brand)
+   Usage: set <html lang="en" data-theme="craft-harness"> and inline this entire
+   file into the artifact's <style> block (inline, never <link>, so the artifact
+   stays portable).
+   Rationale: a dark workshop palette — warm charcoal surfaces, brass primary,
+   copper secondary, verdigris accent — formalizing the luxury-theme direction
+   the project's early artifacts used. Fills are light-on-dark, so their -content
+   colors are deep warm darks; every pair keeps a comfortable AA margin. Serif
+   headlines (Iowan Old Style/Palatino stack) carry the "craft" register. */
+
+[data-theme="craft-harness"] {
+  color-scheme: dark;
+  background-color: #181511;        /* the root paints the canvas too, so overscroll never flashes light */
+  --color-base-100: #181511;        /* warm near-black canvas */
+  --color-base-200: #211d17;        /* raised surface */
+  --color-base-300: #322b21;        /* borders, wells */
+  --color-base-content: #eae3d6;    /* warm off-white ink */
+  --color-primary: #d9a648;         /* brass */
+  --color-primary-content: #201709;
+  --color-secondary: #c98a55;       /* copper */
+  --color-secondary-content: #241205;
+  --color-accent: #8fb89e;          /* verdigris */
+  --color-accent-content: #12211a;
+  --color-neutral: #322b21;
+  --color-neutral-content: #eae3d6;
+  --color-info: #82b5dd;
+  --color-info-content: #0e1b26;
+  --color-success: #8bc48b;
+  --color-success-content: #10200f;
+  --color-warning: #e0b64f;
+  --color-warning-content: #241c07;
+  --color-error: #e58176;
+  --color-error-content: #260c08;
+  --radius-selector: 0.5rem;        /* crisp workbench edges */
+  --radius-field: 0.375rem;
+  --radius-box: 0.5rem;
+  --border: 1px;
+  --depth: 0;
+  --noise: 0;
+}
+
+[data-theme="craft-harness"] body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+  background-color: #181511;
+  color: #eae3d6;
+}
+[data-theme="craft-harness"] h1,
+[data-theme="craft-harness"] h2 {
+  font-family: "Iowan Old Style", "Palatino Nova", Palatino, Georgia, serif;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+[data-theme="craft-harness"] h3,
+[data-theme="craft-harness"] h4 { font-weight: 600; }
+[data-theme="craft-harness"] .card {
+  background: #211d17;              /* base-200 */
+  border: 1px solid rgba(234, 227, 214, 0.09);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
