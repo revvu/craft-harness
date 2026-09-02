@@ -1,0 +1,700 @@
+<!doctype html>
+<html lang="en" data-theme="craft-harness">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Craft Harness — The Neurosymbolic Reframe</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daisyui@5.5.19/daisyui.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daisyui@5.5.19/themes.css">
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.2.4/dist/index.global.js"></script>
+<style>
+/* Lavish skin — DaisyUI 5 custom theme.
+   theme-name: craft-harness
+   token source of truth: this file (the project is docs-only, so the skin IS the brand)
+   Usage: set <html lang="en" data-theme="craft-harness"> and inline this entire
+   file into the artifact's <style> block (inline, never <link>, so the artifact
+   stays portable).
+   Rationale: a dark workshop palette — warm charcoal surfaces, brass primary,
+   copper secondary, verdigris accent — formalizing the luxury-theme direction
+   the project's early artifacts used. Fills are light-on-dark, so their -content
+   colors are deep warm darks; every pair keeps a comfortable AA margin. Serif
+   headlines (Iowan Old Style/Palatino stack) carry the "craft" register. */
+
+[data-theme="craft-harness"] {
+  color-scheme: dark;
+  background-color: #181511;        /* the root paints the canvas too, so overscroll never flashes light */
+  --color-base-100: #181511;        /* warm near-black canvas */
+  --color-base-200: #211d17;        /* raised surface */
+  --color-base-300: #322b21;        /* borders, wells */
+  --color-base-content: #eae3d6;    /* warm off-white ink */
+  --color-primary: #d9a648;         /* brass */
+  --color-primary-content: #201709;
+  --color-secondary: #c98a55;       /* copper */
+  --color-secondary-content: #241205;
+  --color-accent: #8fb89e;          /* verdigris */
+  --color-accent-content: #12211a;
+  --color-neutral: #322b21;
+  --color-neutral-content: #eae3d6;
+  --color-info: #82b5dd;
+  --color-info-content: #0e1b26;
+  --color-success: #8bc48b;
+  --color-success-content: #10200f;
+  --color-warning: #e0b64f;
+  --color-warning-content: #241c07;
+  --color-error: #e58176;
+  --color-error-content: #260c08;
+  --radius-selector: 0.5rem;        /* crisp workbench edges */
+  --radius-field: 0.375rem;
+  --radius-box: 0.5rem;
+  --border: 1px;
+  --depth: 0;
+  --noise: 0;
+}
+
+[data-theme="craft-harness"] body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+  background-color: #181511;
+  color: #eae3d6;
+}
+[data-theme="craft-harness"] h1,
+[data-theme="craft-harness"] h2 {
+  font-family: "Iowan Old Style", "Palatino Nova", Palatino, Georgia, serif;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+[data-theme="craft-harness"] h3,
+[data-theme="craft-harness"] h4 { font-weight: 600; }
+[data-theme="craft-harness"] .card {
+  background: #211d17;              /* base-200 */
+  border: 1px solid rgba(234, 227, 214, 0.09);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+  *, *::before, *::after { box-sizing: border-box; }
+  :where(.grid, .flex) > * { min-width: 0; }
+  :where(p, h1, h2, h3, h4, h5, h6, li, dd, blockquote, figcaption, td, th, .badge, .label) { overflow-wrap: anywhere; }
+  :where(img, svg, video, canvas, iframe) { max-width: 100%; height: auto; }
+  body { background: var(--color-base-100); color: var(--color-base-content); }
+  .ch-hole { border: 2px dashed var(--color-warning); }
+  .ch-locked-code { filter: blur(5px); user-select: none; pointer-events: none; }
+  .ch-section-kicker { letter-spacing: .18em; text-transform: uppercase; font-size: .72rem; opacity: .55; font-weight: 700; }
+</style>
+</head>
+<body>
+<main class="mx-auto max-w-6xl p-4 sm:p-6 lg:p-10 space-y-14">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero bg-base-200 rounded-box border border-base-content/10">
+    <div class="hero-content text-center py-12">
+      <div class="max-w-3xl space-y-4">
+        <div class="flex justify-center gap-2 flex-wrap">
+          <span class="badge badge-primary badge-soft">v2 · pass 1</span>
+          <span class="badge badge-ghost">supersedes the agent-harness framing</span>
+        </div>
+        <h1 class="text-4xl sm:text-5xl font-bold">Craft Harness</h1>
+        <p class="text-xl opacity-90">A <span class="text-primary font-semibold">neurosymbolic representation of your understanding</span> — a medium that makes the ideas, concepts, and skills you provably know easily leverageable and composable.</p>
+        <p class="text-sm opacity-60">Not an agent wrapper. Not gating. Not permissions. A personal standard library for cognition.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ THE INVERSION ============ -->
+  <section class="space-y-5">
+    <div>
+      <p class="ch-section-kicker">1 · The inversion</p>
+      <h2 class="text-3xl font-bold">Compose up, don't filter down</h2>
+      <p class="opacity-80 mt-2 max-w-3xl">The decision that reset the architecture: stop subtracting from an omniscient agent, start composing from your proven primitives.</p>
+    </div>
+    <div class="grid md:grid-cols-2 gap-4 items-stretch">
+      <div class="card card-border bg-base-200 opacity-75">
+        <div class="card-body">
+          <div class="flex items-center justify-between gap-2">
+            <h3 class="card-title">v1 — Filter a general intelligence <span class="text-error">down</span></h3>
+            <span class="badge badge-error badge-soft shrink-0">superseded</span>
+          </div>
+          <ul class="mt-2 space-y-2 text-sm">
+            <li>• An agent does the work; a checker + auditor subtract what you haven't earned</li>
+            <li>• Permission lists, gated execution, adversarial audits</li>
+            <li>• Leakage = breach of delegated authority → high stakes, heavy machinery</li>
+          </ul>
+          <div role="alert" class="alert alert-error alert-soft mt-3 text-sm">
+            <span><b>Why it died (spike-proven):</b> the worker <i>parks what it knows it lacks, and smuggles what it doesn't know it's using</i>. Subtraction leaks, and leaky subtraction needs police — the auditor. Policing is constitutive of the gating frame, not incidental.</span>
+          </div>
+        </div>
+      </div>
+      <div class="card card-border bg-base-200 border-primary/40">
+        <div class="card-body">
+          <div class="flex items-center justify-between gap-2">
+            <h3 class="card-title">v2 — Compose a personal intelligence <span class="text-primary">up</span></h3>
+            <span class="badge badge-primary shrink-0">current</span>
+          </div>
+          <ul class="mt-2 space-y-2 text-sm">
+            <li>• The registry is the <b>substance</b> the system is built from, not a filter over a model</li>
+            <li>• Nothing needs denying — nothing outside your space is offered</li>
+            <li>• <b>You</b> are the executor; the system is the medium → residual leakage is an autocomplete-quality issue, not a breach</li>
+          </ul>
+          <div role="alert" class="alert alert-success alert-soft mt-3 text-sm">
+            <span><b>The auditor dissolves</b> — not because integrity got lazy, but because the architecture no longer has the hole the auditor was patching.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TWO LAYERS ============ -->
+  <section class="space-y-5">
+    <div>
+      <p class="ch-section-kicker">2 · The two layers</p>
+      <h2 class="text-3xl font-bold">Where "neurosymbolic" is literal</h2>
+    </div>
+    <div class="grid md:grid-cols-2 gap-4">
+      <div class="card card-border bg-base-200">
+        <div class="card-body">
+          <h3 class="card-title text-secondary">Symbolic — the registry graph</h3>
+          <ul class="space-y-1.5 text-sm mt-1">
+            <li>• Concept/skill nodes with concrete <b>realizations</b> — your stacks, idioms, actual past code</li>
+            <li>• Composition edges: what a node is built from, what it enables</li>
+            <li>• Provenance (the real work that grounds it) + freshness (last personal use)</li>
+            <li>• <b>Deterministic binding resolution</b> — same intent, same expansion</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card card-border bg-base-200">
+        <div class="card-body">
+          <h3 class="card-title text-accent">Neural — the LLM, bound</h3>
+          <ul class="space-y-1.5 text-sm mt-1">
+            <li>• Intent understanding: fuzzy expression → registry terms</li>
+            <li>• Expansion <b>within</b> bindings, in your idioms, seeded from your artifacts</li>
+            <li>• Autocomplete graduated by assistance tier</li>
+            <li>• Librarian routing — sources, never synthesis</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div role="alert" class="alert alert-info alert-soft text-sm">
+      <span><b>The discipline between the layers</b> (survives from v1): the neural layer <i>proposes</i> bindings and extractions; the symbolic layer <i>records</i> them; resolution thereafter is deterministic and auditable.</span>
+    </div>
+  </section>
+
+  <!-- ============ BINDING EXPLORER ============ -->
+  <section class="space-y-5">
+    <div>
+      <p class="ch-section-kicker">3 · The core operation — try it</p>
+      <h2 class="text-3xl font-bold">Binding explorer</h2>
+      <p class="opacity-80 mt-2 max-w-3xl">The same intent lowers differently depending on what <i>you</i> provably know. Toggle registry nodes and watch the resolution change.</p>
+    </div>
+
+    <div class="card card-border bg-base-200">
+      <div class="card-body gap-5">
+        <div class="flex items-center gap-3 flex-wrap">
+          <span class="ch-section-kicker">Your intent</span>
+          <span class="text-lg font-semibold">“scrape this site’s product listings”</span>
+        </div>
+
+        <div class="grid lg:grid-cols-[minmax(0,19rem)_minmax(0,1fr)] gap-5">
+          <!-- registry toggles -->
+          <div class="space-y-2">
+            <p class="ch-section-kicker">Your registry</p>
+            <label class="flex items-center gap-3 bg-base-100 rounded-box p-3 cursor-pointer">
+              <input type="checkbox" id="be-python" class="toggle toggle-primary" checked>
+              <span class="flex-1"><code class="text-sm">python.core</code><br><span class="text-xs opacity-60">provenance: years of shipped work</span></span>
+            </label>
+            <label class="flex items-center gap-3 bg-base-100 rounded-box p-3 cursor-pointer">
+              <input type="checkbox" id="be-scraping" class="toggle toggle-primary" checked>
+              <span class="flex-1"><code class="text-sm">web-scraping.python</code><br><span class="text-xs opacity-60">composes_from: python.core · realizations below</span></span>
+            </label>
+            <div id="be-realizations" class="ml-4 space-y-1.5">
+              <label class="flex items-center gap-2 text-sm cursor-pointer">
+                <input type="radio" name="be-realization" value="scrapy" class="radio radio-sm radio-secondary" checked>
+                <span>realization: <b>Scrapy</b> <span class="badge badge-xs badge-secondary badge-soft">canonical</span></span>
+              </label>
+              <label class="flex items-center gap-2 text-sm cursor-pointer">
+                <input type="radio" name="be-realization" value="bs4" class="radio radio-sm radio-secondary">
+                <span>realization: <b>requests + bs4</b></span>
+              </label>
+            </div>
+          </div>
+
+          <!-- resolution output -->
+          <div class="space-y-3">
+            <p class="ch-section-kicker">Binding resolution</p>
+
+            <div id="be-out-full" class="space-y-3">
+              <div class="flex items-center gap-2 flex-wrap">
+                <span class="badge badge-primary">full-expansion</span>
+                <span class="text-sm opacity-80">“web scrape, generalized” lowers to <b>your</b> implementation — never some other one.</span>
+              </div>
+              <div id="be-code-scrapy" class="mockup-code text-xs overflow-x-auto">
+<pre data-prefix="1"><code># expanded from YOUR realization: scrapy, your spider structure</code></pre>
+<pre data-prefix="2"><code>class ProductSpider(scrapy.Spider):</code></pre>
+<pre data-prefix="3"><code>    name = "products"</code></pre>
+<pre data-prefix="4"><code>    start_urls = [SITE]</code></pre>
+<pre data-prefix="5"><code>    def parse(self, response):</code></pre>
+<pre data-prefix="6"><code>        for card in response.css(".product-card"):   # your selector idiom</code></pre>
+<pre data-prefix="7"><code>            yield ProductItem(name=card.css("h2::text").get(), ...)</code></pre>
+<pre data-prefix="8"><code>        # pipeline + settings scaffolded the way YOUR past projects do it</code></pre>
+              </div>
+              <div id="be-code-bs4" class="mockup-code text-xs overflow-x-auto hidden">
+<pre data-prefix="1"><code># expanded from YOUR realization: requests + beautifulsoup4</code></pre>
+<pre data-prefix="2"><code>resp = requests.get(SITE, headers=UA, timeout=10)   # your defaults</code></pre>
+<pre data-prefix="3"><code>soup = BeautifulSoup(resp.text, "html.parser")</code></pre>
+<pre data-prefix="4"><code>for card in soup.select(".product-card"):</code></pre>
+<pre data-prefix="5"><code>    products.append({"name": card.select_one("h2").get_text(strip=True)})</code></pre>
+<pre data-prefix="6"><code># retry/backoff helper imported from your past scraper utils</code></pre>
+              </div>
+            </div>
+
+            <div id="be-out-hole" class="space-y-3 hidden">
+              <div class="flex items-center gap-2 flex-wrap">
+                <span class="badge badge-info">structural</span>
+                <span class="text-sm opacity-80">You know Python — so you get Python with nice autocomplete. Nothing more.</span>
+              </div>
+              <div class="mockup-code text-xs overflow-x-auto">
+<pre data-prefix="1"><code>def scrape_products(site):</code></pre>
+<pre data-prefix="2"><code>    # syntax + structure autocomplete only — loops, functions, dicts</code></pre>
+<pre data-prefix="3"><code>    ...</code></pre>
+              </div>
+              <div class="card ch-hole bg-base-100">
+                <div class="card-body py-4">
+                  <p class="text-sm"><span class="badge badge-warning badge-soft mr-1">hole</span> <code>undefined symbol: web-scraping</code></p>
+                  <p class="text-xs opacity-70">The system doesn’t fill this from model weights. The hole is first-class: it becomes a frontier pointer → the librarian routes you to primary sources (Scrapy docs, Requests docs), you learn, you ship, the node enters your registry with provenance.</p>
+                </div>
+              </div>
+            </div>
+
+            <div id="be-out-plain" class="space-y-3 hidden">
+              <div class="flex items-center gap-2 flex-wrap">
+                <span class="badge badge-ghost">none</span>
+                <span class="text-sm opacity-80">Outside your space entirely — the medium stays plain.</span>
+              </div>
+              <div class="card card-border bg-base-100">
+                <div class="card-body py-4">
+                  <p class="text-sm opacity-70">A blank buffer. The system never <b>prevents</b> — you can still type anything yourself. It <b>declines to assist</b> beyond your space.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ NODE ANATOMY ============ -->
+  <section class="space-y-5">
+    <div>
+      <p class="ch-section-kicker">4 · Node anatomy</p>
+      <h2 class="text-3xl font-bold">Not just <i>that</i> you know it — <i>how</i> you do it</h2>
+    </div>
+    <div class="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,20rem)] gap-4">
+      <div class="mockup-code text-xs overflow-x-auto">
+<pre data-prefix=" "><code>id: web-scraping.python</code></pre>
+<pre data-prefix=" "><code>kind: skill</code></pre>
+<pre data-prefix="★" class="text-primary"><code>realizations:</code></pre>
+<pre data-prefix="★" class="text-primary"><code>  - stack: [scrapy]            # canonical</code></pre>
+<pre data-prefix="★" class="text-primary"><code>    artifacts: [past spider projects]</code></pre>
+<pre data-prefix="★" class="text-primary"><code>    idioms: "how I structure spiders, pipelines"</code></pre>
+<pre data-prefix="★" class="text-primary"><code>  - stack: [requests, beautifulsoup4]</code></pre>
+<pre data-prefix=" "><code>composes_from: [python.core, http.basics, html.dom]</code></pre>
+<pre data-prefix=" "><code>enables: [data-pipelines.ingestion]</code></pre>
+<pre data-prefix=" "><code>provenance:</code></pre>
+<pre data-prefix=" "><code>  - project: real shipped work (2024-11)</code></pre>
+<pre data-prefix=" "><code>assistance: full-expansion</code></pre>
+<pre data-prefix=" "><code>freshness: last personally exercised 2026-05</code></pre>
+      </div>
+      <div class="space-y-3">
+        <div class="card card-border bg-base-200"><div class="card-body py-4">
+          <p class="text-sm"><b class="text-primary">★ Realizations</b> are the decisive difference from v1: the registry stores your canonical stacks, idioms, and actual prior code — so expansion sounds like you.</p>
+        </div></div>
+        <div class="card card-border bg-base-200"><div class="card-body py-4">
+          <p class="text-sm"><b>Provenance</b> replaces exams as the evidence spine: mined from real past work; new knowledge proves itself by shipping. <i>The work is the assessment.</i></p>
+        </div></div>
+        <div class="card card-border bg-base-200"><div class="card-body py-4">
+          <p class="text-sm"><b>Freshness</b> replaces half-life machinery: stale nodes drop assistance tier gently — no exams triggered.</p>
+        </div></div>
+      </div>
+    </div>
+
+    <div class="overflow-x-auto rounded-box border border-base-content/10 bg-base-100">
+      <table class="table table-sm">
+        <thead><tr><th>Assistance tier</th><th>Meaning</th><th>The medium provides</th></tr></thead>
+        <tbody>
+          <tr><td><span class="badge badge-ghost">none</span></td><td>not in registry</td><td>nothing — plain medium</td></tr>
+          <tr><td><span class="badge badge-ghost">reference</span></td><td>encountered / explained</td><td>recall of your own notes only</td></tr>
+          <tr><td><span class="badge badge-info badge-soft">structural</span></td><td>mastered base skill</td><td>syntax/structure autocomplete — the “Python with nice autocomplete” tier</td></tr>
+          <tr><td><span class="badge badge-primary badge-soft">full-expansion</span></td><td>realized skill with provenance</td><td>generation in your idioms from your artifacts</td></tr>
+          <tr><td><span class="badge badge-secondary badge-soft">generalize</span></td><td>strong transfer</td><td>novel composition and adaptation across contexts</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="text-xs opacity-60">The v1 mastery ladder, repurposed: levels stopped being agent permissions and became assistance tiers.</p>
+  </section>
+
+  <!-- ============ LIBRARIAN ============ -->
+  <section class="space-y-5">
+    <div>
+      <p class="ch-section-kicker">5 · The librarian — try the dial</p>
+      <h2 class="text-3xl font-bold">Search that never reveals the answer</h2>
+      <p class="opacity-80 mt-2 max-w-3xl">Contract: <b>reveal sources and vocabulary, never synthesis.</b> You drive the decomposition; the answer emerges from reading. Backend: the spike-validated citation + pathfinding engine.</p>
+    </div>
+    <div class="card card-border bg-base-200">
+      <div class="card-body gap-4">
+        <div class="flex items-center gap-3 flex-wrap">
+          <span class="ch-section-kicker">Your query</span>
+          <span class="font-semibold">“I need to get structured data out of these HTML pages”</span>
+        </div>
+        <div class="max-w-md">
+          <input type="range" id="lib-dial" min="0" max="2" value="0" class="range range-primary" step="1">
+          <div class="flex justify-between px-1 text-xs mt-1 opacity-70">
+            <span>source locations</span><span>ecosystem vocabulary</span><span>section pointers</span>
+          </div>
+        </div>
+        <div id="lib-out-0" class="card bg-base-100 card-border"><div class="card-body py-4 text-sm space-y-1">
+          <p class="ch-section-kicker">librarian returns</p>
+          <p>Two places to read: <b>Scrapy documentation</b> (docs.scrapy.org) · <b>Requests documentation</b> (requests.readthedocs.io).</p>
+          <p class="text-xs opacity-60">Just where to look. What you need from them is yours to discover.</p>
+        </div></div>
+        <div id="lib-out-1" class="card bg-base-100 card-border hidden"><div class="card-body py-4 text-sm space-y-1">
+          <p class="ch-section-kicker">librarian returns</p>
+          <p>The ecosystem’s vocabulary for your problem: <b>“HTML parser”</b>, <b>“DOM traversal”</b>, <b>“CSS selectors”</b>. Parsers for Python live at: <b>Beautiful Soup docs</b> · <b>lxml docs</b> · stdlib <code>html.parser</code> docs.</p>
+          <p class="text-xs opacity-60">Names what exists — the moment you “realize you need an HTML parser” arrives from you, faster.</p>
+        </div></div>
+        <div id="lib-out-2" class="card bg-base-100 card-border hidden"><div class="card-body py-4 text-sm space-y-1">
+          <p class="ch-section-kicker">librarian returns</p>
+          <p>Beautiful Soup docs → <b>“Searching the tree”</b> · lxml docs → <b>“Parsing from strings”</b> · Scrapy docs → <b>“Selectors”</b> chapter.</p>
+          <p class="text-xs opacity-60">Section-level pointers — the deepest the dial goes.</p>
+        </div></div>
+        <div class="card bg-base-100 card-border border-error/40">
+          <div class="card-body py-4 text-sm">
+            <p class="ch-section-kicker text-error">🔒 never on the dial — synthesis</p>
+            <div class="mockup-code text-xs ch-locked-code mt-1" aria-hidden="true">
+<pre data-prefix="1"><code>soup = BeautifulSoup(resp.text, "html.parser")</code></pre>
+<pre data-prefix="2"><code>for card in soup.select(".product-card"): ...</code></pre>
+            </div>
+            <p class="text-xs opacity-60 mt-1">The code is never revealed. Read the docs; write it yourself; ship it — and then it enters your registry with provenance, and the binding explorer above starts expanding it for you.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ THE LOOP ============ -->
+  <section class="space-y-5">
+    <div>
+      <p class="ch-section-kicker">6 · The loop</p>
+      <h2 class="text-3xl font-bold">How the registry grows by living with it</h2>
+    </div>
+    <div class="card card-border bg-base-200"><div class="card-body overflow-x-auto">
+      <pre class="mermaid">
+flowchart TD
+    A["COMPOSE in the medium"] --> B["hit a hole<br/>(undefined symbol)"]
+    B --> C["LIBRARIAN routes to primary sources<br/>(no answers)"]
+    C --> D["learn by reading + building"]
+    D --> E["SHIP real work using it"]
+    E --> F["artifact = provenance"]
+    F --> G["node + realization enter the registry"]
+    G --> H["richer composition<br/>+ frontier materializes around the new node"]
+    H --> A
+      </pre>
+    </div></div>
+    <div class="grid sm:grid-cols-3 gap-3 text-sm">
+      <div class="card card-border bg-base-200"><div class="card-body py-4"><b>Holes</b><p class="text-xs opacity-70">demand — the v2 form of capability gaps</p></div></div>
+      <div class="card card-border bg-base-200"><div class="card-body py-4"><b>Aspirations</b><p class="text-xs opacity-70">pull — you name a distant goal; pathfinding builds the minimal sourced chain</p></div></div>
+      <div class="card card-border bg-base-200"><div class="card-body py-4"><b>Adjacency</b><p class="text-xs opacity-70">supply — new nodes sprout curriculum-adjacent neighbors as options</p></div></div>
+    </div>
+    <p class="text-xs opacity-60">The three pressures survive the pivot intact — the registry stays relevant by construction: it contains exactly what your work demanded, your curiosity pulled, or your mastery touched.</p>
+  </section>
+
+  <!-- ============ SURVIVAL MAP ============ -->
+  <section class="space-y-5">
+    <div>
+      <p class="ch-section-kicker">7 · Survival map</p>
+      <h2 class="text-3xl font-bold">What survives, transforms, dissolves</h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-4">
+      <div class="card card-border bg-base-200"><div class="card-body">
+        <h3 class="card-title text-success text-base">Survives as-is</h3>
+        <ul class="text-sm space-y-1.5">
+          <li>• lazy materialization (interior / frontier / cloud)</li>
+          <li>• three pressures on growth</li>
+          <li>• pathfinding w/ verified citations, typed edges</li>
+          <li>• claim/decision split</li>
+          <li>• no-distillation principle</li>
+          <li>• granularity by demand, split/merge</li>
+        </ul>
+      </div></div>
+      <div class="card card-border bg-base-200"><div class="card-body">
+        <h3 class="card-title text-warning text-base">Transforms</h3>
+        <ul class="text-sm space-y-1.5">
+          <li>• mastery ladder → <b>assistance tiers</b></li>
+          <li>• capability gap → <b>hole / undefined symbol</b></li>
+          <li>• teacher agent → <b>librarian</b></li>
+          <li>• half-life → <b>freshness w/ gentle tier decay</b></li>
+          <li>• CLAIMED / verify-on-first-use → <b>provenance mining</b></li>
+          <li>• positive grounding → <b>the entire system</b></li>
+        </ul>
+      </div></div>
+      <div class="card card-border bg-base-200"><div class="card-body">
+        <h3 class="card-title text-error text-base">Dissolves</h3>
+        <ul class="text-sm space-y-1.5">
+          <li>• worker agent as executor</li>
+          <li>• deterministic permission checker as spine</li>
+          <li>• the LLM auditor</li>
+          <li>• proctored exams as evidence spine <span class="opacity-60">(demoted to optional instrument)</span></li>
+        </ul>
+      </div></div>
+    </div>
+    <div role="alert" class="alert alert-warning alert-soft">
+      <span class="text-sm"><b>The explicit trade:</b> v2 gives up the autonomous worker — no agent doing tasks unattended inside your mastery. Leverage now means a radically better medium for <i>your</i> execution. An agent layer can return later <b>on top of</b> the compositional substrate — a far sounder foundation than gating.</span>
+    </div>
+  </section>
+
+  <!-- ============ ROUND 4 DECISIONS ============ -->
+  <section class="space-y-5">
+    <div>
+      <p class="ch-section-kicker">8 · Round 4 — your decisions</p>
+      <h2 class="text-3xl font-bold">Five open decisions</h2>
+      <p class="opacity-80 mt-2 max-w-3xl">Pick or annotate; each card queues one answer. Press <b>Send to Agent</b> in the top bar when you're done — nothing is sent until then.</p>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-4">
+
+      <!-- D1 medium -->
+      <form data-lavish-question="d1-medium" class="card card-border bg-base-200"
+        onsubmit="event.preventDefault(); const fd=new FormData(event.currentTarget); const c=fd.get('medium'); const n=fd.get('note')||''; if(!c&&!n)return;
+        window.lavish.queuePrompt('Decision 1 (the medium): compose mode should live in: '+(c||'(unspecified)')+(n?'. Notes: '+n:''), {tag:'decision', text:'D1 medium: '+(c||n), element:event.currentTarget, queueKey:'d1', data:{question:'medium', answer:c, note:n}});
+        this.querySelector('.ch-queued').classList.remove('hidden');">
+        <div class="card-body gap-3">
+          <h3 class="card-title text-base">1 · The medium <span class="badge badge-ghost badge-sm">dominates MVP feel</span></h3>
+          <p class="text-xs opacity-70">Where does compose mode live? “Lightweight to play out ideas” suggests editor or notebook.</p>
+          <div class="space-y-1.5 text-sm">
+            <label class="flex gap-2 items-start cursor-pointer"><input type="radio" name="medium" value="editor integration (autocomplete/expansion in the IDE)" class="radio radio-sm radio-primary mt-0.5"><span><b>Editor integration</b> — expansion + graduated autocomplete where you already write code</span></label>
+            <label class="flex gap-2 items-start cursor-pointer"><input type="radio" name="medium" value="notebook" class="radio radio-sm radio-primary mt-0.5"><span><b>Notebook</b> — exploratory, idea-stacking feel</span></label>
+            <label class="flex gap-2 items-start cursor-pointer"><input type="radio" name="medium" value="CLI/REPL" class="radio radio-sm radio-primary mt-0.5"><span><b>CLI / REPL</b> — smallest to build, composable with everything</span></label>
+            <label class="flex gap-2 items-start cursor-pointer"><input type="radio" name="medium" value="chat harness" class="radio radio-sm radio-primary mt-0.5"><span><b>Chat harness</b> — a Claude/agent surface whose context is the registry</span></label>
+          </div>
+          <input type="text" name="note" placeholder="optional note…" class="input input-sm w-full">
+          <div class="card-actions items-center justify-end gap-2">
+            <span class="ch-queued badge badge-success badge-soft hidden">queued ✓</span>
+            <button type="submit" class="btn btn-sm btn-primary">Queue answer</button>
+          </div>
+        </div>
+      </form>
+
+      <!-- D2 lint -->
+      <form data-lavish-question="d2-lint" class="card card-border bg-base-200"
+        onsubmit="event.preventDefault(); const fd=new FormData(event.currentTarget); const c=fd.get('lint'); const n=fd.get('note')||''; if(!c&&!n)return;
+        window.lavish.queuePrompt('Decision 2 (symbolic lint): '+(c||'(unspecified)')+(n?'. Notes: '+n:''), {tag:'decision', text:'D2 lint: '+(c||n), element:event.currentTarget, queueKey:'d2', data:{question:'lint', answer:c, note:n}});
+        this.querySelector('.ch-queued').classList.remove('hidden');">
+        <div class="card-body gap-3">
+          <h3 class="card-title text-base">2 · Symbolic lint <span class="badge badge-ghost badge-sm">gating's frictionless residue</span></h3>
+          <p class="text-xs opacity-70">A deterministic, zero-LLM flag on anything generated outside your realization stacks — e.g. an import not in your registry gets a quiet squiggle. Non-blocking, no judge, pure symbol lookup.</p>
+          <div class="space-y-1.5 text-sm">
+            <label class="flex gap-2 items-start cursor-pointer"><input type="radio" name="lint" value="yes — quiet non-blocking flags" class="radio radio-sm radio-primary mt-0.5"><span><b>Yes</b> — quiet, non-blocking flags</span></label>
+            <label class="flex gap-2 items-start cursor-pointer"><input type="radio" name="lint" value="no — not even that" class="radio radio-sm radio-primary mt-0.5"><span><b>No</b> — not even that; pure composition</span></label>
+            <label class="flex gap-2 items-start cursor-pointer"><input type="radio" name="lint" value="variant — describe in note" class="radio radio-sm radio-primary mt-0.5"><span><b>A variant</b> — describe in the note</span></label>
+          </div>
+          <input type="text" name="note" placeholder="optional note…" class="input input-sm w-full">
+          <div class="card-actions items-center justify-end gap-2">
+            <span class="ch-queued badge badge-success badge-soft hidden">queued ✓</span>
+            <button type="submit" class="btn btn-sm btn-primary">Queue answer</button>
+          </div>
+        </div>
+      </form>
+
+      <!-- D3 provenance mining -->
+      <form data-lavish-question="d3-mining" class="card card-border bg-base-200"
+        onsubmit="event.preventDefault(); const fd=new FormData(event.currentTarget); const corpus=fd.getAll('corpus').join(', '); const appr=fd.get('approval')||''; const n=fd.get('note')||''; if(!corpus&&!appr&&!n)return;
+        window.lavish.queuePrompt('Decision 3 (provenance mining): corpus = '+(corpus||'(unspecified)')+'; approval flow = '+(appr||'(unspecified)')+(n?'. Notes: '+n:''), {tag:'decision', text:'D3 mining: '+corpus+' / '+appr, element:event.currentTarget, queueKey:'d3', data:{question:'mining', corpus:corpus, approval:appr, note:n}});
+        this.querySelector('.ch-queued').classList.remove('hidden');">
+        <div class="card-body gap-3">
+          <h3 class="card-title text-base">3 · Provenance mining <span class="badge badge-ghost badge-sm">bootstrap</span></h3>
+          <p class="text-xs opacity-70">What does bootstrap mine, and how do you approve extracted nodes?</p>
+          <p class="text-xs font-semibold opacity-60">Corpus (pick any):</p>
+          <div class="space-y-1.5 text-sm">
+            <label class="flex gap-2 items-center cursor-pointer"><input type="checkbox" name="corpus" value="git repos / past code" class="checkbox checkbox-sm checkbox-primary"><span>Git repos / past code</span></label>
+            <label class="flex gap-2 items-center cursor-pointer"><input type="checkbox" name="corpus" value="notes and writing" class="checkbox checkbox-sm checkbox-primary"><span>Notes &amp; writing</span></label>
+            <label class="flex gap-2 items-center cursor-pointer"><input type="checkbox" name="corpus" value="shipped projects / work history" class="checkbox checkbox-sm checkbox-primary"><span>Shipped projects / work history</span></label>
+          </div>
+          <p class="text-xs font-semibold opacity-60">Approval flow:</p>
+          <div class="space-y-1.5 text-sm">
+            <label class="flex gap-2 items-center cursor-pointer"><input type="radio" name="approval" value="per batch (review a digest)" class="radio radio-sm radio-primary"><span>Per batch — review a digest of extracted nodes</span></label>
+            <label class="flex gap-2 items-center cursor-pointer"><input type="radio" name="approval" value="per node" class="radio radio-sm radio-primary"><span>Per node — one at a time</span></label>
+          </div>
+          <input type="text" name="note" placeholder="optional note…" class="input input-sm w-full">
+          <div class="card-actions items-center justify-end gap-2">
+            <span class="ch-queued badge badge-success badge-soft hidden">queued ✓</span>
+            <button type="submit" class="btn btn-sm btn-primary">Queue answer</button>
+          </div>
+        </div>
+      </form>
+
+      <!-- D4 reveal dial -->
+      <form data-lavish-question="d4-dial" class="card card-border bg-base-200"
+        onsubmit="event.preventDefault(); const fd=new FormData(event.currentTarget); const line=fd.get('line')||''; const scope=fd.get('scope')||''; const n=fd.get('note')||''; if(!line&&!scope&&!n)return;
+        window.lavish.queuePrompt('Decision 4 (librarian reveal dial): max reveal = '+(line||'(unspecified)')+'; dial scope = '+(scope||'(unspecified)')+(n?'. Notes: '+n:''), {tag:'decision', text:'D4 dial: '+line+' / '+scope, element:event.currentTarget, queueKey:'d4', data:{question:'dial', line:line, scope:scope, note:n}});
+        this.querySelector('.ch-queued').classList.remove('hidden');">
+        <div class="card-body gap-3">
+          <h3 class="card-title text-base">4 · The librarian's reveal dial <span class="badge badge-ghost badge-sm">spoiler line</span></h3>
+          <p class="text-xs opacity-70">Try the dial in §5 above, then pick the deepest reveal you want available. Synthesis is never on the dial.</p>
+          <div class="space-y-1.5 text-sm">
+            <label class="flex gap-2 items-center cursor-pointer"><input type="radio" name="line" value="source locations only" class="radio radio-sm radio-primary"><span>Source locations only</span></label>
+            <label class="flex gap-2 items-center cursor-pointer"><input type="radio" name="line" value="ecosystem vocabulary" class="radio radio-sm radio-primary"><span>+ Ecosystem vocabulary</span></label>
+            <label class="flex gap-2 items-center cursor-pointer"><input type="radio" name="line" value="section-level pointers" class="radio radio-sm radio-primary"><span>+ Section-level pointers</span></label>
+          </div>
+          <p class="text-xs font-semibold opacity-60">Dial setting is:</p>
+          <div class="space-y-1.5 text-sm">
+            <label class="flex gap-2 items-center cursor-pointer"><input type="radio" name="scope" value="per-query" class="radio radio-sm radio-primary"><span>Per-query (I choose each time)</span></label>
+            <label class="flex gap-2 items-center cursor-pointer"><input type="radio" name="scope" value="per-domain" class="radio radio-sm radio-primary"><span>Per-domain</span></label>
+            <label class="flex gap-2 items-center cursor-pointer"><input type="radio" name="scope" value="global" class="radio radio-sm radio-primary"><span>Global</span></label>
+          </div>
+          <input type="text" name="note" placeholder="optional note…" class="input input-sm w-full">
+          <div class="card-actions items-center justify-end gap-2">
+            <span class="ch-queued badge badge-success badge-soft hidden">queued ✓</span>
+            <button type="submit" class="btn btn-sm btn-primary">Queue answer</button>
+          </div>
+        </div>
+      </form>
+
+      <!-- D5 ladder -->
+      <form data-lavish-question="d5-ladder" class="card card-border bg-base-200 lg:col-span-2"
+        onsubmit="event.preventDefault(); const fd=new FormData(event.currentTarget); const c=fd.get('ladder')||''; const n=fd.get('note')||''; if(!c&&!n)return;
+        window.lavish.queuePrompt('Decision 5 (ladder survivals): '+(c||'(unspecified)')+(n?'. Adjustments: '+n:''), {tag:'decision', text:'D5 ladder: '+(c||n), element:event.currentTarget, queueKey:'d5', data:{question:'ladder', answer:c, note:n}});
+        this.querySelector('.ch-queued').classList.remove('hidden');">
+        <div class="card-body gap-3">
+          <h3 class="card-title text-base">5 · Ladder survivals <span class="badge badge-ghost badge-sm">confirm or adjust</span></h3>
+          <p class="text-xs opacity-70">Confirm the assistance tiers (table in §4) and freshness-based gentle tier decay as the replacement for half-life re-probes.</p>
+          <div class="flex flex-wrap gap-4 text-sm">
+            <label class="flex gap-2 items-center cursor-pointer"><input type="radio" name="ladder" value="confirm both as specified" class="radio radio-sm radio-primary"><span><b>Confirm both</b> as specified</span></label>
+            <label class="flex gap-2 items-center cursor-pointer"><input type="radio" name="ladder" value="confirm tiers, rethink decay" class="radio radio-sm radio-primary"><span>Confirm tiers, <b>rethink decay</b></span></label>
+            <label class="flex gap-2 items-center cursor-pointer"><input type="radio" name="ladder" value="adjust — see note" class="radio radio-sm radio-primary"><span><b>Adjust</b> — see note</span></label>
+          </div>
+          <textarea name="note" placeholder="adjustments…" class="textarea textarea-sm w-full" rows="2"></textarea>
+          <div class="card-actions items-center justify-end gap-2">
+            <span class="ch-queued badge badge-success badge-soft hidden">queued ✓</span>
+            <button type="submit" class="btn btn-sm btn-primary">Queue answer</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <footer class="text-xs opacity-50 pb-8 space-y-1">
+    <p>Craft Harness · neurosymbolic reframe (v2, pass 1) · repo: github.com/revvu/craft-harness</p>
+    <p>Docs: craft-harness reframe.md (foundation) · craft-harness plan.md + core concepts.md (superseded, design history) · spikes/ (4 artifacts) · open-questions.md (round 4)</p>
+  </footer>
+</main>
+
+<script>
+  // ---- binding explorer ----
+  const bePython = document.getElementById('be-python');
+  const beScraping = document.getElementById('be-scraping');
+  const beRealizations = document.getElementById('be-realizations');
+  const outFull = document.getElementById('be-out-full');
+  const outHole = document.getElementById('be-out-hole');
+  const outPlain = document.getElementById('be-out-plain');
+  const codeScrapy = document.getElementById('be-code-scrapy');
+  const codeBs4 = document.getElementById('be-code-bs4');
+
+  function beRender() {
+    // composes_from: web-scraping needs python
+    if (!bePython.checked && beScraping.checked) beScraping.checked = false;
+    beScraping.disabled = !bePython.checked;
+    beScraping.closest('label').classList.toggle('opacity-40', !bePython.checked);
+    beRealizations.classList.toggle('hidden', !beScraping.checked);
+
+    const full = bePython.checked && beScraping.checked;
+    const hole = bePython.checked && !beScraping.checked;
+    outFull.classList.toggle('hidden', !full);
+    outHole.classList.toggle('hidden', !hole);
+    outPlain.classList.toggle('hidden', bePython.checked);
+
+    const r = document.querySelector('input[name="be-realization"]:checked');
+    const useScrapy = !r || r.value === 'scrapy';
+    codeScrapy.classList.toggle('hidden', !useScrapy);
+    codeBs4.classList.toggle('hidden', useScrapy);
+  }
+  bePython.addEventListener('change', beRender);
+  beScraping.addEventListener('change', beRender);
+  document.querySelectorAll('input[name="be-realization"]').forEach(el => el.addEventListener('change', beRender));
+  beRender();
+
+  // ---- librarian dial ----
+  const dial = document.getElementById('lib-dial');
+  function dialRender() {
+    for (let i = 0; i <= 2; i++) {
+      document.getElementById('lib-out-' + i).classList.toggle('hidden', Number(dial.value) !== i);
+    }
+  }
+  dial.addEventListener('input', dialRender);
+  dialRender();
+</script>
+
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.15.0/dist/mermaid.esm.min.mjs";
+  const darkQuery = window.matchMedia("(prefers-color-scheme: dark)");
+  const paint = document.createElement("canvas").getContext("2d");
+  function toRgba(color) {
+    paint.clearRect(0, 0, 1, 1);
+    paint.fillStyle = "#000";
+    paint.fillStyle = color;
+    paint.fillRect(0, 0, 1, 1);
+    return paint.getImageData(0, 0, 1, 1).data;
+  }
+  function compositeRgba(foreground, background) {
+    const fa = foreground[3] / 255, ba = background[3] / 255;
+    const a = fa + ba * (1 - fa);
+    if (a === 0) return [0, 0, 0, 0];
+    return [
+      (foreground[0] * fa + background[0] * ba * (1 - fa)) / a,
+      (foreground[1] * fa + background[1] * ba * (1 - fa)) / a,
+      (foreground[2] * fa + background[2] * ba * (1 - fa)) / a,
+      a * 255,
+    ];
+  }
+  function pageIsDark() {
+    const root = document.documentElement;
+    const rootBackground = toRgba(getComputedStyle(root).backgroundColor);
+    const bodyBackground = document.body ? toRgba(getComputedStyle(document.body).backgroundColor) : [0, 0, 0, 0];
+    const [r, g, b, a] = compositeRgba(bodyBackground, rootBackground);
+    if (a > 0) return (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255 < 0.5;
+    const cs = getComputedStyle(root).colorScheme;
+    if (cs.includes("dark") && !cs.includes("light")) return true;
+    if (cs.includes("light") && !cs.includes("dark")) return false;
+    return darkQuery.matches;
+  }
+  const diagrams = [...document.querySelectorAll(".mermaid")].map((el) => ({ el, src: el.textContent }));
+  let applied, rendering = false, queued = false;
+  function queueRender() { queued = true; if (rendering) return; void render(); }
+  async function render() {
+    rendering = true;
+    try {
+      while (queued) {
+        queued = false;
+        const theme = pageIsDark() ? "dark" : "default";
+        if (theme === applied) continue;
+        mermaid.initialize({ startOnLoad: false, theme, securityLevel: "strict" });
+        for (const { el, src } of diagrams) { el.removeAttribute("data-processed"); el.textContent = src; }
+        try { await mermaid.run({ nodes: diagrams.map((d) => d.el) }); }
+        catch (error) { console.error("Mermaid diagram render failed:", error); return; }
+        applied = theme;
+      }
+    } finally {
+      rendering = false;
+      if (queued) queueRender();
+    }
+  }
+  if (document.readyState === "complete") queueRender();
+  else window.addEventListener("load", queueRender, { once: true });
+  const themeObserver = new MutationObserver(queueRender);
+  for (const el of [document.documentElement, document.body]) {
+    if (!el) continue;
+    themeObserver.observe(el, { attributes: true, attributeFilter: ["data-theme", "class", "style"] });
+  }
+  document.addEventListener("change", queueRender, true);
+  document.addEventListener("transitionend", ({ propertyName }) => { if (propertyName === "background-color") queueRender(); }, true);
+  darkQuery.addEventListener("change", queueRender);
+</script>
+</body>
+</html>
